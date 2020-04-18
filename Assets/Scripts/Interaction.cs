@@ -12,7 +12,7 @@ public class Interaction : MonoBehaviour
     //private bool canSteal = false;
     private bool canCollect = false;
     private Dialog_Manager dialog;
-    private string name;
+    private string _name;
     private string text;
     private bool canTalk = false;
 
@@ -156,7 +156,7 @@ public class Interaction : MonoBehaviour
         if (canTalk == true)
         {
             //code.PanelToggle(4);
-            dialog.StartTalking(name, text);
+            //dialog.StartTalking(_name, text);
         }
     }
 }
