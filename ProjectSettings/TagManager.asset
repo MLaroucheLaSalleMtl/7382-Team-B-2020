@@ -13,6 +13,11 @@ TagManager:
   - Jewel
   - Potion
   - PlayerCircleDistance
+  - Enemy Easy
+  - Enemy Medium
+  - Enemy Medium-Easy
+  - Enemy Medium-Hard
+  - Enemy Hard
   layers:
   - Default
   - TransparentFX
