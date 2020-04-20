@@ -18,6 +18,15 @@ TagManager:
   - Enemy Medium-Easy
   - Enemy Medium-Hard
   - Enemy Hard
+  - Fire
+  - Key
+  - TrapSaw
+  - TrapAxe
+  - TrapSpikes
+  - TopViewVig
+  - MiniMapCam
+  - Trap
+  - Freelook Cam
   layers:
   - Default
   - TransparentFX
