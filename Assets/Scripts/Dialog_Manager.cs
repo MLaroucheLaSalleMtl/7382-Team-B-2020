@@ -39,8 +39,8 @@ public class Dialog_Manager : MonoBehaviour
 
     public void StartTalking(NPC npc)
     {
-        i = 0;
-        code.PanelToggle(4);
+        //i = 0;
+        code.PanelToggle(3);
 
         textName.text = npc.name;
 

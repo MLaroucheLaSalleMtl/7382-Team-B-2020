@@ -154,10 +154,14 @@ public class Interaction : MonoBehaviour
 
     public void Talk()
     {
-        if (canTalk == true)
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 2f))
         {
-            //code.PanelToggle(4);
-            //dialog.StartTalking(_name, text);
+            if (hit.collider.tag == "Enemy")
+            {
+                hit.collider.gameObject.GetComponent<Talking>().TriggerNPC();
+            }
+            //FindObjectOfType<Talking>().TriggerNPC();
         }
     }
 }
