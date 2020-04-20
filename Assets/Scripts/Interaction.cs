@@ -51,8 +51,8 @@ public class Interaction : MonoBehaviour
                 //canSteal = false;
                 canCollect = false;
                 canTalk = true;
-                name = hit.collider.GetComponent<DialogInformations>().npcName;
-                text = hit.collider.GetComponent<DialogInformations>().texts;
+                //name = hit.collider.GetComponent<DialogInformations>().npcName;
+                //text = hit.collider.GetComponent<DialogInformations>().texts;
             }
             //else if (hit.collider.tag == "Enemy")
             //{
@@ -96,6 +96,7 @@ public class Interaction : MonoBehaviour
         else if (canCollect == true)
         {
             Collect();
+            canCollect = false;
         }
     }
 

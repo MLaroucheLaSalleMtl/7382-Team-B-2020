@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     //GAME MANAGER VARIABLES
     public static GameManager instance = null; //Declaration of singleton
 
-    
+
     //UI VARIABLES
     [SerializeField] private GameObject[] panels;
 
@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private string postName = "";
     [SerializeField] public Text leaderBoardTxt;
     [SerializeField] private Text gameOverTxt;
+    [SerializeField] private Text gameOverHSTxT;
 
     private Inventory inventory;
 
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = 180f;
+        timer = 30f;
         inventory = Inventory.instance;
         PanelToggle(0);
         for (int i = 0; i < 10; i++)
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
             highScoresString[i] = PlayerPrefs.GetString("HighScoreString" + i.ToString(), highScoresString[i]);
         }
 
-        //ResetLeaderBoard() //Uncomment to reset LeaderBoard at start
+        ResetLeaderBoard(); //Uncomment to reset LeaderBoard at start
 
         posScoreBeaten = 10;
         UpdateInGameLeaderBoard();
@@ -175,8 +176,17 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        Time.timeScale = 0;
         gameOverTxt.text = "GAME OVER! \n" + inventory.moneyTxt.text;
-        PanelToggle(4);
+        gameOverHSTxT.text = gameOverTxt.text;
+        if (inventory.money > highScoresInt[9])
+        {
+            PanelToggle(6);
+        }
+        else
+        {
+            PanelToggle(4);
+        }
     }
 
     public void DoRetry()
