@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    
+
     public static Inventory instance = null; //Declaration of singleton
     [SerializeField] private int size = 10000000; //Size of inventory
     private int totalWeight; //Total weight of Items present in the inventory
@@ -19,6 +19,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Text foodQtyTxt;
     [SerializeField] private Text jewelQtyTxt;
     [SerializeField] private Text potionQtyTxt;
+    [SerializeField] private Text keyQtyTxt;
 
     public int money;
     private Item itemToSell;
@@ -52,6 +53,7 @@ public class Inventory : MonoBehaviour
         foodQtyTxt.text = food.Quantity.ToString();
         jewelQtyTxt.text = jewel.Quantity.ToString();
         potionQtyTxt.text = potion.Quantity.ToString();
+        keyQtyTxt.text = key.Quantity.ToString();
     }
 
     private void Awake()
@@ -86,6 +88,9 @@ public class Inventory : MonoBehaviour
                     jewelQtyTxt.text = item.Quantity.ToString();
                     break;
                 case "Potion":
+                    potionQtyTxt.text = item.Quantity.ToString();
+                    break;
+                case "Key":
                     potionQtyTxt.text = item.Quantity.ToString();
                     break;
             }

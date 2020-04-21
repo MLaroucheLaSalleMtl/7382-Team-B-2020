@@ -83,6 +83,7 @@ public class MazeGame : MonoBehaviour
         player.GetComponentInChildren<Light>().enabled = true;
         SpawnItems.instance.Spawn(level);
         SwitchCursor();
+        GameManager.instance.PanelToggle(9);
     }
     void SwitchCam()
     {

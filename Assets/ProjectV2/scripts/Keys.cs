@@ -15,9 +15,9 @@ public class Keys : MonoBehaviour
     {
 
     }
-    public void AddKeys()
+    public void AddKeys(Inventory inventory)
     {
-        OpenDoor.instance.Keys += 1;
+        inventory.key.Quantity += 1;
         Destroy(this);
         //dialog system add note
     }

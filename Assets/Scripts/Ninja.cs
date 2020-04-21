@@ -13,6 +13,7 @@ public class Ninja : MonoBehaviour
     [SerializeField] private Slider progress_Slider;
     [SerializeField] private Gottem gottem;
     [SerializeField] private TMP_Text text;
+    [SerializeField] private GameObject panelintro;
     public DifficultyNPC difficulty;
     private string preText = "Health: ";
     private float health = 100;
@@ -38,6 +39,7 @@ public class Ninja : MonoBehaviour
         animator = GetComponent<Animator>();
         timeChangeSpeedMult = 1.5f;
         progress_Pannel.SetActive(false);
+        GameManager.instance.PanelToggle(7);
     }
 
     void Update()
@@ -95,17 +97,27 @@ public class Ninja : MonoBehaviour
         if (other.gameObject.tag == "Enemy Easy" || other.gameObject.tag == "King")
         {
             inRange = true;
-             difficulty = DifficultyNPC.easy;
+            difficulty = DifficultyNPC.easy;
         }
         if (other.gameObject.tag == "Enemy Medium" || other.gameObject.tag == "King")
         {
             inRange = true;
-            difficulty = DifficultyNPC.easy;
+            difficulty = DifficultyNPC.medium;
+        }
+        if (other.gameObject.tag == "Enemy Medium-Easy" || other.gameObject.tag == "King")
+        {
+            inRange = true;
+            difficulty = DifficultyNPC.medium;
         }
         if (other.gameObject.tag == "Enemy Medium-Hard" || other.gameObject.tag == "King")
         {
             inRange = true;
-            difficulty = DifficultyNPC.easy;
+            difficulty = DifficultyNPC.hard;
+        }
+        if (other.gameObject.tag == "Enemy Hard" || other.gameObject.tag == "King")
+        {
+            inRange = true;
+            difficulty = DifficultyNPC.hard;
         }
         if (other.gameObject.tag == "TrapSpikes" || other.gameObject.tag == "TrapSaw")
         {
@@ -124,7 +136,7 @@ public class Ninja : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "King")
+        if (other.gameObject.tag == "Enemy Easy" || other.gameObject.tag == "Enemy Medium" || other.gameObject.tag == "Enemy Medium-Easy" || other.gameObject.tag == "Enemy Hard" || other.gameObject.tag == "Enemy Easy" || other.gameObject.tag == "King")
         {
             animator_Progress.SetBool("Grab", false);
             gottem.Init();
@@ -186,6 +198,7 @@ public class Ninja : MonoBehaviour
     {
         MazeGame.instance.StartMazeGame();
         health = 100f;
+        GetComponent<Inventory>().key.Quantity = 0;
         text.faceColor = Color.green;
         text.text = preText + health.ToString("0");
         SpawnItems.instance.DeSpawn();
@@ -193,6 +206,7 @@ public class Ninja : MonoBehaviour
     }
     public enum DifficultyNPC
     {
-        easy,medium,hard
+        easy, medium, hard
     }
 }
+

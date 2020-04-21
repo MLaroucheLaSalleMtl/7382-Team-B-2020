@@ -15,7 +15,7 @@ public class Interaction : MonoBehaviour
     private string _name;
     private string text;
     private bool canTalk = false;
-
+    [SerializeField] private GameObject mazegame;
     [SerializeField] private Text titleTxt;
     //[SerializeField] private Button btnExitShop;
     [SerializeField] private Button btnBack;
@@ -25,6 +25,7 @@ public class Interaction : MonoBehaviour
     //[SerializeField] private Button btnAdd;
     //[SerializeField] private Button btnRemove;
     [SerializeField] private GameObject shop;
+    private bool CanGoToDungeon = false;
 
 
     // Start is called before the first frame update
@@ -63,7 +64,7 @@ public class Interaction : MonoBehaviour
             //    canOpenShop = false;
             //    canTalk = false;
             //}
-            else if (hit.collider.tag == "Coin" || hit.collider.tag == "Food" || hit.collider.tag == "Jewel" || hit.collider.tag == "Potion")
+            else if (hit.collider.tag == "Coin" || hit.collider.tag == "Food" || hit.collider.tag == "Jewel" || hit.collider.tag == "Potion" || hit.collider.tag == "Key")
             {
                 interactTxt.text = "Press E to collect Item";
                 interactTxt.gameObject.SetActive(true);
@@ -76,11 +77,17 @@ public class Interaction : MonoBehaviour
             {
                 interactTxt.text = "You need a key! maybe one of the villagers has it?";
                 interactTxt.gameObject.SetActive(true);
-                if (inventory.key.Quantity >= 1)
+                if (inventory.key.Quantity == 3)
                 {
                     interactTxt.text = "You have the key press e to enter dungeon";
                     interactTxt.gameObject.SetActive(true);
+                    mazegame.SetActive(true);
                     MazeGame.instance.StartMazeGame();
+                    canCollect = false;
+                    //canSteal = false;
+                    canOpenShop = false;
+                    canTalk = false;
+                    CanGoToDungeon = true;
                 }
                 //add dialog here
             }
@@ -114,6 +121,11 @@ public class Interaction : MonoBehaviour
             Collect();
             canCollect = false;
         }
+        else if (CanGoToDungeon == true)
+        {
+            MazeGame.instance.StartMazeGame();
+            inventory.key.Quantity = 0;
+        }
     }
 
     public void OpenShop()
@@ -145,7 +157,7 @@ public class Interaction : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 2f))
         {
-            if (hit.collider.tag == "Coin" || hit.collider.tag == "Food" || hit.collider.tag == "Jewel" || hit.collider.tag == "Potion")
+            if (hit.collider.tag == "Coin" || hit.collider.tag == "Food" || hit.collider.tag == "Jewel" || hit.collider.tag == "Potion" || hit.collider.tag == "Key")
             {
                 switch (hit.collider.tag)
                 {
@@ -161,11 +173,14 @@ public class Interaction : MonoBehaviour
                     case "Potion":
                         inventory.potion.Quantity++;
                         break;
+                    case "Key":
+                        inventory.key.Quantity++;
+                        break;
                 }
                 Destroy(hit.collider.gameObject);
             }
         }
-            Debug.Log("Collect");
+        Debug.Log("Collect");
     }
 
     public void Talk()

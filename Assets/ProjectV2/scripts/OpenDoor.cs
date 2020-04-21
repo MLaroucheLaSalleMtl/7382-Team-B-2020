@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class OpenDoor : MonoBehaviour
 {
-    private int keys = 0;
+    [SerializeField] private Inventory inventory;
     private bool onlyOnce;
     [SerializeField] private Animator[] anim;
     [SerializeField] private Inventory playerInventory;
     [SerializeField] private GameObject pannelDeath;
-    public int Keys { get => keys; set => keys = value; }
     public static OpenDoor instance;
 
     private void Awake()
@@ -26,7 +25,7 @@ public class OpenDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keys == 4 && onlyOnce)
+        if (inventory.key.Quantity == 4 && onlyOnce)
         {
             foreach (Animator element in anim)
             {
