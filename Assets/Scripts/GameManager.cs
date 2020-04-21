@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
         UpdateInGameLeaderBoard();
     }
 
+    bool gameover = false;
     // Update is called once per frame
     void Update()
     {
@@ -56,8 +57,9 @@ public class GameManager : MonoBehaviour
         {
             timer -= Time.deltaTime;
         }
-        else
+        else if (gameover == false)
         {
+            gameover = true;
             GameOver();
         }
 
