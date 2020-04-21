@@ -11,11 +11,7 @@ public class OpenDoor : MonoBehaviour
     [SerializeField] private GameObject pannelDeath;
     public int Keys { get => keys; set => keys = value; }
     public static OpenDoor instance;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
     private void Awake()
     {
         if (instance != null)

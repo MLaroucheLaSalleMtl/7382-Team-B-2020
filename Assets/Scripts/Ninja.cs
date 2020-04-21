@@ -17,7 +17,7 @@ public class Ninja : MonoBehaviour
     private float health = 100;
     private float distance;
     float start = 1f;
-    float end = 0.535f;
+    private float end = 0.535f;
     [Range(1, 2)] [SerializeField] private float timeChangeSpeedMult;
     private float grabCD = 0f;
     private bool grab = false;
@@ -29,6 +29,8 @@ public class Ninja : MonoBehaviour
     [SerializeField] private AudioSource audio1;
     [SerializeField] private AudioClip[] clip;
     private float nextDamage = 0f;
+
+    public float End { get => end; set => end = value; }
 
     void Start()
     {

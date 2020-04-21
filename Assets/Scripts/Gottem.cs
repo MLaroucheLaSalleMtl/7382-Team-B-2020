@@ -101,6 +101,8 @@ public class Gottem : MonoBehaviour //inherit from stats
             win_count = 0;
         }
         Time.timeScale = 1;
+        ninja.End = 0.535f;
+        
     }
     // I ADD ITEMS HERE BRO //////////////////////////////////////////////////////////////
     public void GetRandomItem(int mult)
