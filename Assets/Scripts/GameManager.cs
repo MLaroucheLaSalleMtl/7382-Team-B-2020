@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,10 +31,29 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text timerTxt;
     private float timer;
 
+    [SerializeField] private GameObject enemyE;
+    [SerializeField] private GameObject enemyME;
+    [SerializeField] private GameObject enemyM;
+    [SerializeField] private GameObject enemyMH;
+    [SerializeField] private GameObject enemyH;
+    [SerializeField] private int nbEnemy = 50;
+    private Vector3 posEnemy;
+    [SerializeField] private GameObject player;
+    private GameObject[] clone;
+    private float range = 10f;
+
     // Start is called before the first frame update
     void Start()
     {
-        timer = 30f;
+        clone = new GameObject[nbEnemy];
+        enemyE.GetComponent<AIControl>().target = player.transform;
+        enemyME.GetComponent<AIControl>().target = player.transform;
+        enemyM.GetComponent<AIControl>().target = player.transform;
+        enemyMH.GetComponent<AIControl>().target = player.transform;
+        enemyH.GetComponent<AIControl>().target = player.transform;
+        AddEnemies();
+
+        timer = 300f;
         inventory = Inventory.instance;
         PanelToggle(0);
         for (int i = 0; i < 10; i++)
@@ -178,6 +198,10 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        for (int i = 0; i < nbEnemy; i++)
+        {
+            clone[i].SetActive(false);
+        }
         Time.timeScale = 0;
         gameOverTxt.text = "GAME OVER! \n" + inventory.moneyTxt.text;
         gameOverHSTxT.text = gameOverTxt.text;
@@ -194,6 +218,50 @@ public class GameManager : MonoBehaviour
     public void DoRetry()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void AddEnemies()
+    {
+
+        for (int i = 0; i < nbEnemy; i++)
+        {
+
+            posEnemy = new Vector3(Random.Range(-75f, 75f), 32f, Random.Range(-100f, 100f));
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(posEnemy, out hit, range, NavMesh.AllAreas))
+            {
+                posEnemy = hit.position;
+                int type = Random.Range(0, 100);
+                if (type <= 100 && type > 65)
+                {
+                    clone[i] = Instantiate(enemyE, posEnemy, Quaternion.identity);
+                    enemyE.GetComponent<AIControl>().target = player.transform;
+                }
+                else if (type <= 65 && type > 35)
+                {
+                    clone[i] = Instantiate(enemyME, posEnemy, Quaternion.identity);
+                    enemyME.GetComponent<AIControl>().target = player.transform;
+                }
+                else if (type <= 35 && type > 15)
+                {
+                    clone[i] = Instantiate(enemyM, posEnemy, Quaternion.identity);
+                    enemyM.GetComponent<AIControl>().target = player.transform;
+                }
+                else if (type <= 15 && type > 5)
+                {
+                    clone[i] = Instantiate(enemyMH, posEnemy, Quaternion.identity);
+                    enemyMH.GetComponent<AIControl>().target = player.transform;
+                }
+                else
+                {
+                    clone[i] = Instantiate(enemyH, posEnemy, Quaternion.identity);
+                    enemyH.GetComponent<AIControl>().target = player.transform;
+                }
+                posEnemy = hit.position;
+                Debug.Log("Enemy Created");
+            }
+
+        }
     }
 
 }
