@@ -13,6 +13,7 @@ public class Ninja : MonoBehaviour
     [SerializeField] private Slider progress_Slider;
     [SerializeField] private Gottem gottem;
     [SerializeField] private TMP_Text text;
+    public DifficultyNPC difficulty;
     private string preText = "Health: ";
     private float health = 100;
     private float distance;
@@ -94,6 +95,17 @@ public class Ninja : MonoBehaviour
         if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "King")
         {
             inRange = true;
+             difficulty = DifficultyNPC.easy;
+        }
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "King")
+        {
+            inRange = true;
+            difficulty = DifficultyNPC.easy;
+        }
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "King")
+        {
+            inRange = true;
+            difficulty = DifficultyNPC.easy;
         }
         if (other.gameObject.tag == "TrapSpikes" || other.gameObject.tag == "TrapSaw")
         {
@@ -178,5 +190,9 @@ public class Ninja : MonoBehaviour
         text.text = preText + health.ToString("0");
         SpawnItems.instance.DeSpawn();
         SpawnItems.instance.Spawn(MazeGame.instance.Level);
+    }
+    public enum DifficultyNPC
+    {
+        easy,medium,hard
     }
 }

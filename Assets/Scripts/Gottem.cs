@@ -17,6 +17,7 @@ public class Gottem : MonoBehaviour //inherit from stats
     [Range(1f, 2f)][SerializeField] private float spawnInterval = 1.25f;
     public int tries = 3;
     [Range(0.02f,0.08f)][SerializeField] private float rangeValue = .05f;
+    private float itemchanceMult;
     private Animator anim;
     [SerializeField] private Ninja ninja;
     private Inventory inventory;
@@ -89,6 +90,21 @@ public class Gottem : MonoBehaviour //inherit from stats
     {
         slider_Select.gameObject.SetActive(!slider_Select.gameObject.activeInHierarchy);
         slider_Object.gameObject.SetActive(!slider_Object.gameObject.activeInHierarchy);
+        if (ninja.difficulty == Ninja.DifficultyNPC.easy)
+        {
+            rangeValue = 0.070f;
+            itemchanceMult = 1f;
+        }
+        else if (ninja.difficulty == Ninja.DifficultyNPC.medium)
+        {
+            rangeValue = 0.065f;
+            itemchanceMult = 1.1f;
+        }
+        if (ninja.difficulty == Ninja.DifficultyNPC.hard)
+        {
+            rangeValue = 0.0606f;
+            itemchanceMult = 1.35f;
+        }
     }
     public void Init()
     {
@@ -104,38 +120,37 @@ public class Gottem : MonoBehaviour //inherit from stats
         ninja.End = 0.535f;
         
     }
-    // I ADD ITEMS HERE BRO //////////////////////////////////////////////////////////////
     public void GetRandomItem(int mult)
     {
         int choice = Random.Range(0, 100);
         Debug.Log(choice);
-        if (choice <= 80) {
+        if (choice <= (80 * itemchanceMult))
+        {
             inventory.coins.Quantity++;
             Debug.Log("You got a coin");
         }
-        if (choice <= 50)
+        if (choice <= (50 * itemchanceMult))
         {
             inventory.food.Quantity++;
             Debug.Log("You got some food");
         }
-        if (choice <= 10)
+        if (choice <= (10 * itemchanceMult))
         {
             inventory.potion.Quantity++;
             Debug.Log("You got a potion");
         }
-        if (choice <= 5 * mult)
+        if (choice <= (5 * itemchanceMult))
         {
             inventory.jewel.Quantity++;
             Debug.Log("You got a rare jewel !");
         }
-        if (choice <= 4 * mult)
+        if (choice <= (4 * itemchanceMult))
         {
             inventory.key.Quantity++;
             Debug.Log("You got a super rare key! what could be its use??");
         }
 
     }
-    // I REMOVE ITEMS HERE BRO ////////////////////////////////////////////
     public void RemoveRandomItem()
     {
         int choice = Random.Range(0, 101);
