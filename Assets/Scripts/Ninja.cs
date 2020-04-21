@@ -17,7 +17,7 @@ public class Ninja : MonoBehaviour
     private float health = 100;
     private float distance;
     float start = 1f;
-    float end = 0f;
+    float end = 0.535f;
     [Range(1, 2)] [SerializeField] private float timeChangeSpeedMult;
     private float grabCD = 0f;
     private bool grab = false;
@@ -33,7 +33,7 @@ public class Ninja : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        timeChangeSpeedMult = .9f;
+        timeChangeSpeedMult = 1.5f;
         progress_Pannel.SetActive(false);
     }
 
@@ -140,6 +140,7 @@ public class Ninja : MonoBehaviour
         gottem.TogglePanel();
         progress_Pannel.SetActive(false);
         minigameStarted = true;
+        end = 0f;
     }
     void DealDamage(Vector3 location, float damage)
     {

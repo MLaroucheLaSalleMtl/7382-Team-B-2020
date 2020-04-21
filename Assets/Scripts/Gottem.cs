@@ -70,6 +70,7 @@ public class Gottem : MonoBehaviour //inherit from stats
             GetRandomItem(1);
             Init();
         }
+        Debug.Log("lose");
     }
     void Lose()
     {
@@ -82,6 +83,7 @@ public class Gottem : MonoBehaviour //inherit from stats
             TogglePanel();
             Init();
         }
+        Debug.Log("win");
     }
     public void TogglePanel()
     {
@@ -98,6 +100,7 @@ public class Gottem : MonoBehaviour //inherit from stats
         {
             win_count = 0;
         }
+        Time.timeScale = 1;
     }
     // I ADD ITEMS HERE BRO //////////////////////////////////////////////////////////////
     public void GetRandomItem(int mult)

@@ -15,7 +15,7 @@ public class Steal_Vision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ninja.GetBool("Crouch") == true)
+        if (ninja.GetBool("Grab") == true)
         { 
             postVol.SetActive(true);
         }
