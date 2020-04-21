@@ -92,17 +92,17 @@ public class Ninja : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "King")
+        if (other.gameObject.tag == "Enemy Easy" || other.gameObject.tag == "King")
         {
             inRange = true;
              difficulty = DifficultyNPC.easy;
         }
-        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "King")
+        if (other.gameObject.tag == "Enemy Medium" || other.gameObject.tag == "King")
         {
             inRange = true;
             difficulty = DifficultyNPC.easy;
         }
-        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "King")
+        if (other.gameObject.tag == "Enemy Medium-Hard" || other.gameObject.tag == "King")
         {
             inRange = true;
             difficulty = DifficultyNPC.easy;
