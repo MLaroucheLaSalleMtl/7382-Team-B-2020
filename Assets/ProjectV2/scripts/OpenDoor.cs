@@ -7,6 +7,8 @@ public class OpenDoor : MonoBehaviour
     private int keys = 0;
     private bool onlyOnce;
     [SerializeField] private Animator[] anim;
+    [SerializeField] private Inventory playerInventory;
+    [SerializeField] private GameObject pannelDeath;
     public int Keys { get => keys; set => keys = value; }
     public static OpenDoor instance;
     // Start is called before the first frame update
@@ -37,6 +39,10 @@ public class OpenDoor : MonoBehaviour
             onlyOnce = false;
         }
     }
-
+    public void Opendoor()
+    {
+        playerInventory.money += 10000;
+        pannelDeath.SetActive(true);
+    }
 
 }

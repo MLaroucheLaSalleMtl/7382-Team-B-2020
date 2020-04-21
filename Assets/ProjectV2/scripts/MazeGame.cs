@@ -25,8 +25,10 @@ public class MazeGame : MonoBehaviour
     private DifficultyLevel level;
     private SpawnItems ItemSpawner;
     public static MazeGame instance;
+    private bool fog = false;
     public bool disableFog { get; private set; }
     public DifficultyLevel Level { get => level; set => level = value; }
+    public bool Fog { get => fog; set => fog = value; }
 
 
     // Start is called before the first frame update
@@ -43,13 +45,10 @@ public class MazeGame : MonoBehaviour
     }
     void Start()
     {
-        doWeHaveFogInScene = RenderSettings.fog;
         layer.profile.TryGetSettings(out vig);
         currentCam = GameObject.FindGameObjectWithTag("MiniMapCam").GetComponentInChildren<CinemachineVirtualCamera>();
         playerCam = GameObject.FindGameObjectWithTag("Freelook Cam").GetComponent<CinemachineFreeLook>();
         volumeTopCam = GameObject.FindGameObjectWithTag("TopViewVig").GetComponent<PostProcessVolume>();
-        SwitchCursor();
-        StartMazeGame();
         level = DifficultyLevel.final;
 
     }
@@ -76,13 +75,14 @@ public class MazeGame : MonoBehaviour
     }
     public void StartMazeGame()
     {
-        Debug.Log("whattt");
         player.transform.position = spawn.position;
         player.transform.rotation = spawn.rotation;
-        RenderSettings.fog = true;
+        Fog = true;
+        RenderSettings.fog = Fog;
         minimap.SetActive(true);
         player.GetComponentInChildren<Light>().enabled = true;
-        //ItemSpawner.Spawn(level);
+        SpawnItems.instance.Spawn(level);
+        SwitchCursor();
     }
     void SwitchCam()
     {
@@ -98,7 +98,7 @@ public class MazeGame : MonoBehaviour
         }
         light1.SetActive(!light1.activeInHierarchy);
         volumeTopCam.enabled = !volumeTopCam.enabled;
-        disableFog = !disableFog;
+        Fog = !Fog;
     }
     public enum DifficultyLevel
     {

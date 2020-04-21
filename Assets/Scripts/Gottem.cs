@@ -123,6 +123,11 @@ public class Gottem : MonoBehaviour //inherit from stats
             inventory.jewel.Quantity++;
             Debug.Log("You got a rare jewel !");
         }
+        if (choice <= 4 * mult)
+        {
+            inventory.key.Quantity++;
+            Debug.Log("You got a super rare key! what could be its use??");
+        }
 
     }
     // I REMOVE ITEMS HERE BRO ////////////////////////////////////////////

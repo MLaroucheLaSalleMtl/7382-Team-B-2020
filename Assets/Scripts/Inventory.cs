@@ -14,6 +14,7 @@ public class Inventory : MonoBehaviour
     public Item food;
     public Item jewel;
     public Item potion;
+    public Item key;
     [SerializeField] private Text coinsQtyTxt;
     [SerializeField] private Text foodQtyTxt;
     [SerializeField] private Text jewelQtyTxt;
@@ -34,6 +35,7 @@ public class Inventory : MonoBehaviour
         food = new Item("Food", 0, 2, 1, 1, 1);
         jewel = new Item("Jewel", 0, 5, 3, 10, 2);
         potion = new Item("Potion", 0, 3, 1, 5, 3);
+        key = new Item("key", 0, 3, 1, 5, 3);
 
         itemToSell = coins;
 

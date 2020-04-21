@@ -72,6 +72,22 @@ public class Interaction : MonoBehaviour
                 canOpenShop = false;
                 canTalk = false;
             }
+            else if (hit.collider.tag == "FirstDoor")
+            {
+                interactTxt.text = "You need a key! maybe one of the villagers has it?";
+                interactTxt.gameObject.SetActive(true);
+                if (inventory.key.Quantity >= 1)
+                {
+                    interactTxt.text = "You have the key press e to enter dungeon";
+                    interactTxt.gameObject.SetActive(true);
+                    MazeGame.instance.StartMazeGame();
+                }
+                //add dialog here
+            }
+            else if (hit.collider.tag == "FinalDoor")
+            {
+                hit.collider.GetComponent<OpenDoor>().Opendoor();
+            }
         }
         else
         {

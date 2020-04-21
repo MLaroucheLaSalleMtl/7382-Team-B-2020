@@ -17,7 +17,7 @@ public class Ninja : MonoBehaviour
     private float health = 100;
     private float distance;
     float start = 1f;
-    float end = .5f;
+    float end = 0f;
     [Range(1, 2)] [SerializeField] private float timeChangeSpeedMult;
     private float grabCD = 0f;
     private bool grab = false;
@@ -33,7 +33,7 @@ public class Ninja : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        timeChangeSpeedMult = 1.5f;
+        timeChangeSpeedMult = .9f;
         progress_Pannel.SetActive(false);
     }
 
@@ -99,7 +99,7 @@ public class Ninja : MonoBehaviour
             nextDamage += Time.fixedDeltaTime;
             if (nextDamage >= damageInterval)
             {
-                DealDamage(location, 3f);
+                DealDamage(location, 15f);
                 audio1.PlayOneShot(clip[0], 0.9f);
                 audio1.PlayOneShot(clip[1], 0.5f);
                 nextDamage = 0;
@@ -130,7 +130,7 @@ public class Ninja : MonoBehaviour
         if (other.gameObject.tag == "TrapAxe")
         {
             Vector3 location = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-            DealDamage(location, 15f);
+            DealDamage(location, 30f);
             audio1.PlayOneShot(clip[0], 0.9f);
             audio1.PlayOneShot(clip[2], 0.5f);
         }
@@ -148,12 +148,13 @@ public class Ninja : MonoBehaviour
         emit.position = location;
         particle.Emit(emit, 15);
         health -= damage;
-        if (health < 0)
-        {
-            health = 0;
-        }
         text.faceColor = Color.red;
         text.text = preText + health.ToString("0");
+        if (health <= 0)
+        {
+            health = 0;
+            Death();
+        }
     }
     private IEnumerator ChangeTimescale()
     {
@@ -165,5 +166,14 @@ public class Ninja : MonoBehaviour
         }
         Time.timeScale = 1;
         yield return true;
+    }
+    void Death()
+    {
+        MazeGame.instance.StartMazeGame();
+        health = 100f;
+        text.faceColor = Color.green;
+        text.text = preText + health.ToString("0");
+        SpawnItems.instance.DeSpawn();
+        SpawnItems.instance.Spawn(MazeGame.instance.Level);
     }
 }
