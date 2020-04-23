@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         enemyH.GetComponent<AIControl>().target = player.transform;
         AddEnemies();
 
-        timer = 300f;
+        timer = 30f;
         inventory = Inventory.instance;
         PanelToggle(0);
         for (int i = 0; i < 10; i++)
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         UpdateInGameLeaderBoard();
     }
 
-    //bool gameover = false;
+    bool gameover = false;
     // Update is called once per frame
     void Update()
     {
@@ -77,9 +77,9 @@ public class GameManager : MonoBehaviour
         {
             timer -= Time.deltaTime;
         }
-        else /*if (gameover == false)*/
+        else if (gameover == false)
         {
-            //gameover = true;
+            gameover = true;
             GameOver();
         }
 
