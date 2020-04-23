@@ -92,17 +92,17 @@ public class Gottem : MonoBehaviour //inherit from stats
         slider_Object.gameObject.SetActive(!slider_Object.gameObject.activeInHierarchy);
         if (ninja.difficulty == Ninja.DifficultyNPC.easy)
         {
-            rangeValue = 0.070f;
+            rangeValue = 0.085f;
             itemchanceMult = 1f;
         }
         else if (ninja.difficulty == Ninja.DifficultyNPC.medium)
         {
-            rangeValue = 0.065f;
+            rangeValue = 0.082f;
             itemchanceMult = 1.1f;
         }
         if (ninja.difficulty == Ninja.DifficultyNPC.hard)
         {
-            rangeValue = 0.0606f;
+            rangeValue = 0.08f;
             itemchanceMult = 1.35f;
         }
     }
