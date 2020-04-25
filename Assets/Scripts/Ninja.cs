@@ -189,6 +189,7 @@ public class Ninja : MonoBehaviour
         while (Time.timeScale >= 1)
         {
             Time.timeScale = Mathf.Lerp(Time.timeScale, start, Time.unscaledDeltaTime * timeChangeSpeedMult);
+            Debug.Log(Time.timeScale);
             yield return new WaitForFixedUpdate();
         }
         Time.timeScale = 1;
@@ -207,6 +208,10 @@ public class Ninja : MonoBehaviour
     public enum DifficultyNPC
     {
         easy, medium, hard
+    }
+    void AddNpc(float distance)
+    {
+
     }
 }
 

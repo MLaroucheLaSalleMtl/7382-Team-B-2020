@@ -1893,6 +1893,7 @@ GameObject:
   - component: {fileID: 810735953190300245}
   - component: {fileID: 3717103458631797525}
   - component: {fileID: 4960198782957578574}
+  - component: {fileID: -2532142602240165681}
   m_Layer: 0
   m_Name: Enemy Medium-Hard
   m_TagString: Enemy Medium-Hard
@@ -2040,6 +2041,19 @@ CapsuleCollider:
   m_Height: 2.8316498
   m_Direction: 1
   m_Center: {x: 0.0010017157, y: 0.8836899, z: -0.4314757}
+--- !u!114 &-2532142602240165681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2394499437193929939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd17ab9efe3b784fa5ffc5aa0360ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initHeight: 0.5
 --- !u!1 &2394501553728779795
 GameObject:
   m_ObjectHideFlags: 0

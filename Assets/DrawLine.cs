@@ -11,7 +11,7 @@ public class DrawLine : MonoBehaviour
     float angleIncrease = 0f;
     [SerializeField][Range(0,1)] float initHeight = .5f;
     private float distance;
-    [SerializeField] private GameObject player;
+    private GameObject player;
 
     // Start is called before the first frame update
     private void Update()
@@ -28,7 +28,8 @@ public class DrawLine : MonoBehaviour
     }
     
     void Start()
-    {     
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
         circle = GetComponent<LineRenderer>();
         circle.positionCount = 0;
         DrawCircle();

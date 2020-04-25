@@ -947,6 +947,7 @@ GameObject:
   - component: {fileID: 7040484371174734906}
   - component: {fileID: 7040484371174734909}
   - component: {fileID: 7040484371174734908}
+  - component: {fileID: 4957362257677953685}
   m_Layer: 0
   m_Name: EnemyMedium-Easy
   m_TagString: Enemy Medium-Easy
@@ -1095,6 +1096,19 @@ CapsuleCollider:
   m_Height: 2.8316498
   m_Direction: 1
   m_Center: {x: 0.0010017157, y: 0.8836899, z: -0.4314757}
+--- !u!114 &4957362257677953685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7040484371174734911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd17ab9efe3b784fa5ffc5aa0360ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initHeight: 0.5
 --- !u!1 &7040485569548605541
 GameObject:
   m_ObjectHideFlags: 0

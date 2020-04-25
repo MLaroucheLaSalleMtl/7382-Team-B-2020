@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject enemyM;
     [SerializeField] private GameObject enemyMH;
     [SerializeField] private GameObject enemyH;
-    [SerializeField] private int nbEnemy = 50;
+    [SerializeField] private int nbEnemy = 10;
     private Vector3 posEnemy;
     [SerializeField] private GameObject player;
     private GameObject[] clone;
@@ -258,7 +258,6 @@ public class GameManager : MonoBehaviour
                     enemyH.GetComponent<AIControl>().target = player.transform;
                 }
                 posEnemy = hit.position;
-                Debug.Log("Enemy Created");
             }
 
         }

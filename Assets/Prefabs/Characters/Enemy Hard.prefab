@@ -1216,6 +1216,7 @@ GameObject:
   - component: {fileID: 3382961036670094173}
   - component: {fileID: 5115805534144223294}
   - component: {fileID: 7630224632292720930}
+  - component: {fileID: 1820870933959256586}
   m_Layer: 0
   m_Name: Enemy Hard
   m_TagString: Enemy Hard
@@ -1363,6 +1364,19 @@ CapsuleCollider:
   m_Height: 2.8316498
   m_Direction: 1
   m_Center: {x: 0.0010017157, y: 0.8836899, z: -0.4314757}
+--- !u!114 &1820870933959256586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7344769177190544877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd17ab9efe3b784fa5ffc5aa0360ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initHeight: 0.5
 --- !u!1 &7344774009402011601
 GameObject:
   m_ObjectHideFlags: 0

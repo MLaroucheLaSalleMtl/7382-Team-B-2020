@@ -71,7 +71,7 @@ public class Gottem : MonoBehaviour //inherit from stats
             GetRandomItem(1);
             Init();
         }
-        Debug.Log("lose");
+        Debug.Log("win");
     }
     void Lose()
     {
@@ -84,7 +84,7 @@ public class Gottem : MonoBehaviour //inherit from stats
             TogglePanel();
             Init();
         }
-        Debug.Log("win");
+        Debug.Log("lose");
     }
     public void TogglePanel()
     {
@@ -123,7 +123,6 @@ public class Gottem : MonoBehaviour //inherit from stats
     public void GetRandomItem(int mult)
     {
         int choice = Random.Range(0, 100);
-        Debug.Log(choice);
         if (choice <= (80 * itemchanceMult))
         {
             inventory.coins.Quantity++;

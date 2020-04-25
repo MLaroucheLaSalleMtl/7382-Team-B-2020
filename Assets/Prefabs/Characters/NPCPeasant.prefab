@@ -854,6 +854,7 @@ GameObject:
   - component: {fileID: 3892079629929080138}
   - component: {fileID: 4880463065035014653}
   - component: {fileID: 5715814379214219657}
+  - component: {fileID: -5136085080092993120}
   m_Layer: 0
   m_Name: NPCPeasant
   m_TagString: Enemy
@@ -1002,6 +1003,19 @@ MonoBehaviour:
   m_MoveSpeedMultiplier: 1
   m_AnimSpeedMultiplier: 1
   m_GroundCheckDistance: 0.3
+--- !u!114 &-5136085080092993120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3892800747209311676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd17ab9efe3b784fa5ffc5aa0360ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initHeight: 0.5
 --- !u!1 &3892813227050474704
 GameObject:
   m_ObjectHideFlags: 0
