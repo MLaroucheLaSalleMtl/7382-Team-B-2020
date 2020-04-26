@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     private Inventory inventory;
 
     [SerializeField] private Text timerTxt;
+    [SerializeField] private TMP_Text keyTxt;
     private float timer;
 
     [SerializeField] private GameObject enemyE;

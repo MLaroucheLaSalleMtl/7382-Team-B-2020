@@ -12,6 +12,7 @@ public class DrawLine : MonoBehaviour
     [SerializeField][Range(0,1)] float initHeight = .5f;
     private float distance;
     private GameObject player;
+    [SerializeField] private Ninja playerNinja;
 
     // Start is called before the first frame update
     private void Update()
@@ -20,6 +21,14 @@ public class DrawLine : MonoBehaviour
         if ( distance <= 5f)
         {
             circle.enabled = true;
+            if (distance <= 2f)
+            {
+                playerNinja.InRange = true;
+            }
+            else
+            {
+                playerNinja.InRange = false;
+            }
         }
         else
         {
@@ -30,10 +39,11 @@ public class DrawLine : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        circle = GetComponent<LineRenderer>();
+        circle = GetComponentInChildren<LineRenderer>();
         circle.positionCount = 0;
         DrawCircle();
         circle.enabled = false;
+        playerNinja = player.GetComponent<Ninja>();
     }
     public void DrawCircle()
     {

@@ -14,25 +14,25 @@ public class Ninja : MonoBehaviour
     [SerializeField] private Gottem gottem;
     [SerializeField] private TMP_Text text;
     [SerializeField] private GameObject panelintro;
-    public DifficultyNPC difficulty;
+    public DifficultyNPC difficulty; // the difficulty of the minigame
     private string preText = "Health: ";
     private float health = 100;
-    private float distance;
     float start = 1f;
-    private float end = 0.535f;
-    [Range(1, 2)] [SerializeField] private float timeChangeSpeedMult;
-    private float grabCD = 0f;
+    private float end = 0.535f; // minimum TimeScale when in range of an npc
+    [Range(1, 2)] [SerializeField] private float timeChangeSpeedMult; // the speed at wich the timescale changes
+    private float grabCD = 0f; // timer for grabbing
     private bool grab = false;
-    private float grabtime = 3f;
-    public bool minigameStarted = false;
-    private bool inRange = false;
-    private float damageInterval = .35f;
-    [SerializeField] private ParticleSystem particle;
-    [SerializeField] private AudioSource audio1;
+    private float grabtime = 3f; // time need to start minigame
+    public bool minigameStarted = false; // has the minigame started?
+    private bool inRange = false; //are we close enough to grab?
+    private float damageInterval = .35f; // delay beetween every trap damage
+    [SerializeField] private ParticleSystem particle; // blood
+    [SerializeField] private AudioSource audio1; 
     [SerializeField] private AudioClip[] clip;
-    private float nextDamage = 0f;
+    private float nextDamage = 0f; // the counter for damage ticking
 
     public float End { get => end; set => end = value; }
+    public bool InRange { get => inRange; set => inRange = value; }
 
     void Start()
     {
@@ -96,27 +96,22 @@ public class Ninja : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy Easy" || other.gameObject.tag == "King")
         {
-            inRange = true;
             difficulty = DifficultyNPC.easy;
         }
         if (other.gameObject.tag == "Enemy Medium" || other.gameObject.tag == "King")
         {
-            inRange = true;
             difficulty = DifficultyNPC.medium;
         }
         if (other.gameObject.tag == "Enemy Medium-Easy" || other.gameObject.tag == "King")
         {
-            inRange = true;
             difficulty = DifficultyNPC.medium;
         }
         if (other.gameObject.tag == "Enemy Medium-Hard" || other.gameObject.tag == "King")
         {
-            inRange = true;
             difficulty = DifficultyNPC.hard;
         }
         if (other.gameObject.tag == "Enemy Hard" || other.gameObject.tag == "King")
         {
-            inRange = true;
             difficulty = DifficultyNPC.hard;
         }
         if (other.gameObject.tag == "TrapSpikes" || other.gameObject.tag == "TrapSaw")
@@ -186,7 +181,7 @@ public class Ninja : MonoBehaviour
     private IEnumerator ChangeTimescale()
     {
         Debug.Log("started");
-        while (Time.timeScale >= 1)
+        while (Time.timeScale <= 1)
         {
             Time.timeScale = Mathf.Lerp(Time.timeScale, start, Time.unscaledDeltaTime * timeChangeSpeedMult);
             Debug.Log(Time.timeScale);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Inventory : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Text foodQtyTxt;
     [SerializeField] private Text jewelQtyTxt;
     [SerializeField] private Text potionQtyTxt;
-    [SerializeField] private Text keyQtyTxt;
+    [SerializeField] private TMP_Text keyQtyTxt;
 
     public int money;
     private Item itemToSell;
