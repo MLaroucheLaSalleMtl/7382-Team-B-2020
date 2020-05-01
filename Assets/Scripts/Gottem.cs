@@ -118,7 +118,7 @@ public class Gottem : MonoBehaviour //inherit from stats
         }
         Time.timeScale = 1;
         ninja.End = 0.535f;
-        
+        ninja.minigameStarted = false;
     }
     public void GetRandomItem(int mult)
     {

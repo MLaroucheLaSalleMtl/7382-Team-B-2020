@@ -21,7 +21,7 @@ public class DrawLine : MonoBehaviour
         if ( distance <= 5f)
         {
             circle.enabled = true;
-            if (distance <= 2f)
+            if (distance <= 1.8f)
             {
                 playerNinja.InRange = true;
             }

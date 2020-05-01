@@ -44,6 +44,7 @@ public class Ninja : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(Time.timeScale);
         if (grab)
         {
             animator_Progress.SetBool("Grab", true);
@@ -71,7 +72,6 @@ public class Ninja : MonoBehaviour
                 grab = true;
                 if (grabCD >= grabtime && minigameStarted == false)
                 {
-                    Debug.Log("IN");
                     Minigame();
                 }
             }
@@ -82,6 +82,7 @@ public class Ninja : MonoBehaviour
         }
         else
         {
+            StartCoroutine("ChangeTimescale");
             grab = false;
             progress_Pannel.SetActive(false);
             foreach (GameObject pannel in pannels)
@@ -136,10 +137,6 @@ public class Ninja : MonoBehaviour
             animator_Progress.SetBool("Grab", false);
             gottem.Init();
             grabCD = 0;
-            inRange = false;
-            StartCoroutine("ChangeTimescale");
-            Debug.Log(Time.timeScale);
-            Debug.Log("exit");
         }
         if (other.gameObject.tag == "Trap")
         {
@@ -165,7 +162,6 @@ public class Ninja : MonoBehaviour
     }
     void DealDamage(Vector3 location, float damage)
     {
-        Debug.Log("called");
         ParticleSystem.EmitParams emit = new ParticleSystem.EmitParams();
         emit.position = location;
         particle.Emit(emit, 15);
@@ -180,11 +176,9 @@ public class Ninja : MonoBehaviour
     }
     private IEnumerator ChangeTimescale()
     {
-        Debug.Log("started");
-        while (Time.timeScale <= 1)
+        while (Time.timeScale < 0.99f)
         {
             Time.timeScale = Mathf.Lerp(Time.timeScale, start, Time.unscaledDeltaTime * timeChangeSpeedMult);
-            Debug.Log(Time.timeScale);
             yield return new WaitForFixedUpdate();
         }
         Time.timeScale = 1;
@@ -203,10 +197,6 @@ public class Ninja : MonoBehaviour
     public enum DifficultyNPC
     {
         easy, medium, hard
-    }
-    void AddNpc(float distance)
-    {
-
     }
 }
 
