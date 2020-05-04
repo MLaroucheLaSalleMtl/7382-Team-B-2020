@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         enemyH.GetComponent<AIControl>().target = player.transform;
         AddEnemies();
 
-        timer = 30f;
+        timer = 1000f;
         inventory = Inventory.instance;
         PanelToggle(0);
         for (int i = 0; i < 10; i++)
